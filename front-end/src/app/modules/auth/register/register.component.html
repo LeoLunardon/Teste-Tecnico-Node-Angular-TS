@@ -1,0 +1,74 @@
+<div class="login-form-wrapper">
+  <form
+    nz-form
+    [formGroup]="validateForm"
+    class="login-form"
+    (ngSubmit)="submitForm()"
+  >
+    <h1>Registro</h1>
+    <nz-form-item class="login-input">
+      <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="username"
+        >Nome de usuário</nz-form-label
+      >
+      <nz-form-control
+        [nzSm]="14"
+        [nzXs]="24"
+        nzErrorTip="Por favor, digite seu nome de usuário!"
+      >
+        <input nz-input formControlName="username" id="username" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item class="login-input">
+      <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="email"
+        >E-mail</nz-form-label
+      >
+      <nz-form-control
+        [nzSm]="14"
+        [nzXs]="24"
+        nzErrorTip="Por favor, digite seu e-mail!"
+      >
+        <input nz-input formControlName="email" id="email" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item class="login-input">
+      <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="password" nzRequired
+        >Senha</nz-form-label
+      >
+      <nz-form-control
+        [nzSm]="14"
+        [nzXs]="24"
+        nzErrorTip="Por favor, digite sua senha!"
+      >
+        <input
+          nz-input
+          type="password"
+          id="password"
+          formControlName="password"
+        />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item class="login-input">
+      <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="checkPassword" nzRequired
+        >Confirmar senha</nz-form-label
+      >
+      <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="errorTpl">
+        <input
+          nz-input
+          type="password"
+          formControlName="checkPassword"
+          id="checkPassword"
+        />
+        <ng-template #errorTpl let-control>
+          <ng-container *ngIf="control.hasError('required')"
+            >Por favor, confirme sua senha!</ng-container
+          >
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item class="" nz-row class="register-btn">
+      <nz-form-control [nzSpan]="14" [nzOffset]="6">
+        <button nz-button nzType="primary">Registre-se</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>

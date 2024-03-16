@@ -1,0 +1,27 @@
+<div class="container">
+  <app-sidemenu />
+  <div class="cards-container">
+    <app-cards
+    title="Cadastrar Pessoas"
+    description="Função para cadastrar pessoas e atividades"
+    imageUrl="https://i.imgur.com/HuRhkkq.jpeg"
+    (cardClicked)="openPersonRegisterModal()"
+    ></app-cards>
+    <app-cards
+    title="Cadastrar atividades"
+    description="Função para cadastrar novas atividades"
+    imageUrl="https://i.imgur.com/vCz3GlD.png"
+    (cardClicked)="openActivityRegisterModal()"
+    ></app-cards>
+    <app-cards
+    title="Visualizar cadastros"
+    description="Função para visualizar pessoas e atividades"
+    imageUrl="https://i.imgur.com/eSzG5Xx.png"
+    (cardClicked)="openPersonsListModal()"
+    ></app-cards>
+  </div>
+  <app-person-register-modal></app-person-register-modal>
+  <app-activity-register-modal></app-activity-register-modal>
+  <app-persons-list-modal></app-persons-list-modal>
+</div>
+

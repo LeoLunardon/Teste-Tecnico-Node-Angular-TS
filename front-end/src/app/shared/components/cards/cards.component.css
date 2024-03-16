@@ -1,0 +1,17 @@
+
+
+.cards-items {
+  border-radius: 10px;
+  background-color: #f5f5f517;
+  border: gray 1px solid;
+ 
+}
+.cards-items:hover {
+  scale: 1.05;
+  transition: 0.3s;
+}
+
+.cards-items-text{
+   width: 190px;
+   text-align: start;
+}

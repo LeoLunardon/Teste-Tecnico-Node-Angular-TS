@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  background-color: #26253f;
+  width: 100vw;
+  height: 100vh;
+}
+
+.cards-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+}

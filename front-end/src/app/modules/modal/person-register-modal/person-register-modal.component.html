@@ -1,0 +1,65 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  nzTitle="Cadastro de dados pessoais"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+  nzWidth="800px"
+>
+  <form
+    *nzModalContent
+    nz-form
+    [formGroup]="validateForm"
+    (ngSubmit)="submitForm()"
+    style="display: flex; flex-wrap: wrap"
+    class="modal-form"
+  >
+    <div  style="width: 50%; padding-right: 16px">
+      <h3>Dados pessoais</h3>
+      <nz-form-label nzRequired nzFor="name" style="margin-bottom: 8px"
+        >Nome</nz-form-label
+      >
+      <nz-form-item style="margin-bottom: 8px">
+        <input nz-input formControlName="name" id="name" />
+      </nz-form-item>
+
+      <nz-form-label nzRequired nzFor="email" style="margin-bottom: 8px"
+        >E-mail</nz-form-label
+      >
+      <nz-form-item style="margin-bottom: 8px">
+        <nz-form-control nzErrorTip="Por favor, informe um e-mail">
+          <input nz-input formControlName="email" id="email" />
+        </nz-form-control>
+      </nz-form-item>
+
+    </div>
+    
+    <div style="width: 50%; padding-left: 16px">
+      <h3>Endereço</h3>
+      <nz-form-label nzFor="street" style="margin-bottom: 8px"
+        >Rua</nz-form-label
+      >
+      <nz-form-item style="margin-bottom: 8px">
+        <input nz-input formControlName="street" id="street" />
+      </nz-form-item>
+      <nz-form-label nzFor="number" style="margin-bottom: 8px"
+        >Número</nz-form-label
+      >
+      <nz-form-item style="margin-bottom: 8px">
+        <input nz-input formControlName="number" id="number" />
+      </nz-form-item>
+      <nz-form-label nzFor="complement" style="margin-bottom: 8px"
+        >Complemento</nz-form-label
+      >
+      <nz-form-item style="margin-bottom: 8px">
+        <input nz-input formControlName="complement" id="complement" />
+      </nz-form-item>
+
+      <nz-form-label nzFor="city" style="margin-bottom: 8px"
+        >Cidade</nz-form-label
+      >
+      <nz-form-item style="margin-bottom: 8px">
+        <input nz-input formControlName="city" id="city" />
+      </nz-form-item>
+    </div>
+  </form>
+</nz-modal>

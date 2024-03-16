@@ -1,0 +1,90 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  nzTitle="Visualizar pessoas e atividades"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+  nzWidth="700px"
+>
+  <ng-container *nzModalContent>
+    <nz-row [nzGutter]="0">
+      <nz-col nzSpan="12">
+        <h3>Selecione uma pessoa:</h3>
+        <nz-select
+          (ngModelChange)="onPersonSelect($event)"
+          [ngModel]="selectedPersonId"
+          [nzPlaceHolder]="'Selecione uma pessoa'"
+          nzShowSearch
+          nzAllowClear
+          style="max-width: 200px; min-width: 200px"
+        >
+          <nz-option
+            *ngFor="let person of persons"
+            [nzValue]="person.id"
+            [nzLabel]="person.name"
+          ></nz-option>
+        </nz-select>
+
+        <div *ngIf="personProps">
+          <h3 style="display: block; margin-top: 40px">
+            Dados da pessoa selecionada:
+          </h3>
+          <nz-form-label [nzSpan]="8">Email</nz-form-label>
+          <nz-form-item class="ant-form-item">
+            <nz-form-control [nzSpan]="16">
+              <input nz-input [(ngModel)]="personProps.email" readonly />
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-label [nzSpan]="8">Rua</nz-form-label>
+          <nz-form-item class="ant-form-item">
+            <nz-form-control [nzSpan]="16">
+              <input nz-input [(ngModel)]="personProps.street" readonly />
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-label [nzSpan]="8">Cidade</nz-form-label>
+          <nz-form-item class="ant-form-item">
+            <nz-form-control [nzSpan]="16">
+              <input nz-input [(ngModel)]="personProps.city" readonly />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </nz-col>
+
+      <nz-col nzSpan="12">
+        <h3 *ngIf="activities && activities.length > 0">Atividades:</h3>
+        <div
+          class="activities-container"
+          *ngIf="activities && activities.length > 0"
+        >
+          <div *ngFor="let activity of activities">
+            <nz-card
+              class="activity-card"
+              style="width: 400px"
+              [nzBordered]="false"
+            >
+              <nz-card-meta
+                [nzTitle]="activity.name"
+                [nzDescription]="activity.description"
+              >
+              </nz-card-meta>
+              <ul class="list-items-activity">
+                <li>
+                  Data de início: {{ activity.startDate | date : "dd/MM/yyyy" }}
+                </li>
+                <li>
+                  Data de término: {{ activity.endDate | date : "dd/MM/yyyy" }}
+                </li>
+                <li>
+                  Data de criação:
+                  {{ activity.creationDate | date : "dd/MM/yyyy" }}
+                </li>
+              </ul>
+            </nz-card>
+          </div>
+        </div>
+        <p *ngIf="selectedPersonId && !(activities && activities.length > 0)">
+          Não foram encontradas atividades para esta pessoa.
+        </p>
+      </nz-col>
+    </nz-row>
+  </ng-container>
+</nz-modal>

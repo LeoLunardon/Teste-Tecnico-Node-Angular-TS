@@ -1,0 +1,45 @@
+<div class="login-form-wrapper">
+  <form
+    nz-form
+    class="login-form"
+    (ngSubmit)="submitForm()"
+    [formGroup]="validateForm"
+  >
+    <h1>Login</h1>
+
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Por favor, digite seu email">
+        <nz-input-group nzPrefixIcon="user">
+          <input
+            type="email"
+            nz-input
+            formControlName="email"
+            placeholder="Digite seu email"
+          />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Por favor, digite sua senha">
+        <nz-input-group nzPrefixIcon="lock">
+          <input
+            type="password"
+            nz-input
+            formControlName="password"
+            placeholder="Digite sua senha"
+          />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <button
+      nz-button
+      class="login-form-button login-form-margin"
+      [nzType]="'primary'"
+    >
+      Login
+    </button>
+
+    Ainda não possui uma conta?
+    <a href="/register">Registre-se agora!</a>
+  </form>
+</div>

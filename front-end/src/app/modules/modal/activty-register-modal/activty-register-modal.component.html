@@ -1,0 +1,85 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  nzTitle="Cadastro de atividades"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+  nzWidth="600px"
+>
+  <form
+  class="modal-form"
+    *nzModalContent
+    nz-form
+    [formGroup]="validateForm"
+    (ngSubmit)="submitForm()"
+    style="display: flex; flex-wrap: wrap"
+  >
+    <div style="width: 50%; padding-right: 16px">
+      <h3>Selecione uma pessoa</h3>
+      <nz-form-item>
+        <nz-form-label nzFor="personId">Pessoa</nz-form-label>
+        <nz-select
+          style="max-width: 200px; min-width: 200px"
+          formControlName="personId"
+          nzPlaceHolder="Selecione uma pessoa"
+        >
+          <nz-option
+            *ngFor="let person of persons"
+            [nzValue]="person.id"
+            [nzLabel]="person.name"
+          ></nz-option>
+        </nz-select>
+      </nz-form-item>
+      <h3>Dados da atividade</h3>
+      <nz-form-label nzRequired nzFor="name" style="margin-bottom: 8px"
+        >Nome da atividade</nz-form-label
+      >
+      <nz-form-item style="margin-bottom: 8px">
+        <input nz-input formControlName="name" id="name" />
+      </nz-form-item>
+
+      <nz-form-label nzRequired nzFor="description" style="margin-bottom: 8px"
+        >Descrição da atividade</nz-form-label
+      >
+      <nz-form-item style="margin-bottom: 8px">
+        <input nz-input formControlName="description" id="description" />
+      </nz-form-item>
+    </div>
+
+    <div style="width: 50%; padding-left: 16px">
+      <h3>Selecione as datas da atividade</h3>
+      <nz-form-label nzFor="startDate" style="margin-bottom: 8px"
+        >Data de início</nz-form-label
+      >
+      <nz-form-item style="margin-bottom: 8px">
+        <nz-date-picker
+          nz-input
+          formControlName="startDate"
+          id="startDate"
+        ></nz-date-picker>
+      </nz-form-item>
+
+      <nz-form-label nzFor="endDate" style="margin-bottom: 8px"
+        >Data de término</nz-form-label
+      >
+      <nz-form-item style="margin-bottom: 8px">
+        <nz-date-picker
+          nz-input
+          formControlName="endDate"
+          id="endDate"
+        ></nz-date-picker>
+      </nz-form-item>
+      <nz-form-label nzFor="creationDate" style="margin-bottom: 8px"
+        >Data de criação</nz-form-label
+      >
+      <nz-form-item nzRequired style="margin-bottom: 8px; max-width: 150px;">
+        <input
+          nz-input
+          formControlName="creationDate"
+          id="creationDate"
+          [value]="creationDate"
+          readonly
+        />
+      </nz-form-item>
+    </div>
+  </form>
+</nz-modal>

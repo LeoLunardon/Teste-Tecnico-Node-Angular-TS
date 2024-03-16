@@ -1,4 +1,4 @@
-import express, { Router } from "express";
+import express from "express";
 import personController from "../../../services/controllers/personController";
 import { jwtAuth } from "../../../services/middlewares/jwtAuth";
 
@@ -9,6 +9,11 @@ personRouter.post(
   "/createPersonActivities",
   jwtAuth,
   personController.createPersonActivities
+);
+personRouter.post(
+  "/create",
+  jwtAuth,
+  personController.create
 );
 
 //Adicionar novas atividades a pessoas
@@ -23,6 +28,12 @@ personRouter.get(
   "/personWithActivities/:id",
   jwtAuth,
   personController.personWithActivities
+);
+
+personRouter.get(
+  "/getAllPersons",
+  jwtAuth,
+  personController.getAllPersons
 );
 
 export default personRouter;
