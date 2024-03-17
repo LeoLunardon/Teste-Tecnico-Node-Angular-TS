@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedModule } from '../../../shared/modules/shared.modules';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NzModalService, NzModalRef } from 'ng-zorro-antd/modal';
 import { RegisterModalService } from '../../../core/services/register-modal-service';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
@@ -23,7 +22,6 @@ export class PersonRegisterModalComponent implements OnInit {
   confirmModal?: NzModalRef;
 
   constructor(
-    private http: HttpClient,
     private modal: NzModalService,
     private registerModalService: RegisterModalService,
     private notification: NzNotificationService,
@@ -77,12 +75,6 @@ export class PersonRegisterModalComponent implements OnInit {
     if (this.validateForm.valid) {
       const { name, email, street, number, complement, city } =
         this.validateForm.value;
-      const token = localStorage.getItem('token');
-      const headers = new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      });
-
       const requestData = {
         email,
         name,

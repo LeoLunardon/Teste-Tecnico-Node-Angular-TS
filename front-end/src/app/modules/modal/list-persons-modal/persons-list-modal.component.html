@@ -55,6 +55,25 @@
           class="activities-container"
           *ngIf="activities && activities.length > 0"
         >
+          <nz-select
+            style="margin-left: 10px; min-width: 200px; max-width: 200px"
+            [ngModel]="filterStatus"
+            (ngModelChange)="filterStatus = $event; sortActivities()"
+            [nzPlaceHolder]="'Filtrar por status'"
+          >
+            <nz-option
+              [nzValue]="status"
+              [nzLabel]="status"
+              *ngFor="
+                let status of [
+                  'Todas',
+                  'Em execução',
+                  'Não iniciada',
+                  'Finalizado'
+                ]
+              "
+            ></nz-option>
+          </nz-select>
           <div *ngFor="let activity of activities">
             <nz-card
               class="activity-card"
@@ -66,6 +85,14 @@
                 [nzDescription]="activity.description"
               >
               </nz-card-meta>
+              <span
+                style="margin-left: 250px; cursor: pointer; font-size: 18px"
+                nz-icon
+                nzType="delete"
+                nzTheme="outline"
+                (click)="showDeleteConfirm(activity.id)"
+              >
+              </span>
               <ul class="list-items-activity">
                 <li>
                   Data de início: {{ activity.startDate | date : "dd/MM/yyyy" }}
@@ -78,6 +105,16 @@
                   {{ activity.creationDate | date : "dd/MM/yyyy" }}
                 </li>
               </ul>
+
+              <nz-tag *ngIf="activity.status === 'Não iniciada'" nzColor="red"
+                >Não iniciada</nz-tag
+              >
+              <nz-tag *ngIf="activity.status === 'Em execução'" nzColor="blue"
+                >Em execução</nz-tag
+              >
+              <nz-tag *ngIf="activity.status === 'Finalizado'" nzColor="green"
+                >Finalizado</nz-tag
+              >
             </nz-card>
           </div>
         </div>

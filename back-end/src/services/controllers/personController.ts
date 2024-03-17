@@ -14,28 +14,11 @@ class PersonController {
         complement,
         city,
       });
-      return  res.status(201).json(person);
+      return res.status(201).json(person);
     } catch (err) {
       return res
         .status(400)
         .json({ error: "Erro ao criar usuário" + "" + err });
-    }
-  }
-
-  async createPersonActivities(req: Request, res: Response) {
-    const { person, activity } = req.body;
-
-    try {
-      const newPerson = await Person.create(person);
-      activity.UserId = newPerson.id;
-      const newActivity = await Activity.create(activity);
-
-      res.status(201).json({ person: newPerson, activity: newActivity });
-    } catch (err) {
-      console.error("Erro ao criar usuário e atividade:", err);
-      res
-        .status(500)
-        .json({ error: "Erro ao criar usuário e atividade" + "" + err });
     }
   }
 
@@ -64,6 +47,22 @@ class PersonController {
     }
   }
 
+  async deleteActivity(req: Request, res: Response) {
+    const activityId = req.params.activityId;
+
+    try {
+      const activity = await Activity.findByPk(activityId);
+      if (!activity) {
+        return res.status(404).json({ error: "Atividade não encontrada" });
+      }
+      await activity.destroy();
+      res.status(200).json({ message: "Atividade deletada com sucesso" });
+    } catch (error) {
+      console.error("Erro ao deletar atividade:", error);
+      res.status(500).json({ error: "Erro ao deletar atividade" });
+    }
+  }
+
   async personWithActivities(req: Request, res: Response) {
     try {
       const userId = req.params.id;
@@ -84,7 +83,7 @@ class PersonController {
 
   async getAllPersons(req: Request, res: Response) {
     try {
-      const persons = await Person.findAll({ attributes: ['id', 'name'] });
+      const persons = await Person.findAll({ attributes: ["id", "name"] });
 
       res.json(persons);
     } catch (error) {
@@ -92,7 +91,6 @@ class PersonController {
       res.status(500).json({ error: "Erro ao recuperar pessoas" });
     }
   }
- 
 }
 
 export default new PersonController();

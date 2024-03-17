@@ -3,13 +3,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PersonRegisterService {
+  private url = 'http://localhost:3000';
 
-  private url = 'http://localhost:3000/create';
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   createPerson(data: any): Observable<any> {
     const token = localStorage.getItem('token');
@@ -18,6 +17,9 @@ export class PersonRegisterService {
       Authorization: `Bearer ${token}`,
     });
 
-    return this.http.post(this.url, data, { headers, observe: 'response' });
+    return this.http.post<any>(`${this.url}/create`, data, {
+      headers,
+      observe: 'response',
+    });
   }
 }

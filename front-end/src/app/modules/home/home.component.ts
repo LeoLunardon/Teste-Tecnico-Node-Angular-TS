@@ -2,9 +2,9 @@ import { Component, ViewChild, viewChild } from '@angular/core';
 import { SharedModule } from '../../shared/modules/shared.modules';
 import { CardsComponent } from '../../shared/components/cards/cards.component';
 import { SidemenuComponent } from '../../shared/components/sidemenu/sidemenu.component';
-import { PersonRegisterModalComponent } from '../modal/person-register-modal/person-register-modal.component';
-import { ActivityRegisterModalComponent } from '../modal/activty-register-modal/activty-register-modal.component';
-import { PersonsListModalComponent } from '../modal/persons-list-modal/persons-list-modal.component';
+import { PersonRegisterModalComponent } from '../modal/register-person-modal/person-register-modal.component';
+import { ActivityRegisterModalComponent } from '../modal/register-activty-modal/activty-register-modal.component';
+import { PersonsListModalComponent } from '../modal/list-persons-modal/persons-list-modal.component';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -30,7 +30,6 @@ export class HomeComponent {
   openActivityRegisterModal(): void {
     this.modal2.showModal();
   }
-
   openPersonsListModal(): void {
     this.modal3.showModal();
   }

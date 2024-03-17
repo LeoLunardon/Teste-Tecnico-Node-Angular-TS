@@ -52,12 +52,6 @@ export class ActivityRegisterModalComponent implements OnInit {
   }
 
   getAllPersons(): void {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    });
-
     this.personsActivitiesService.getAllPersons().subscribe(
       (persons: any[]) => {
         this.persons = persons.map((person) => ({
@@ -127,12 +121,6 @@ export class ActivityRegisterModalComponent implements OnInit {
         );
         return;
       }
-
-      const token = localStorage.getItem('token');
-      const headers = new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      });
 
       this.selectedPersonId = this.validateForm.get('personId')?.value;
 

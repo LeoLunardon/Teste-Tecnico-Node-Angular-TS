@@ -15,8 +15,8 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
-
-
+import { NzTagModule } from 'ng-zorro-antd/tag';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 @NgModule({
   imports: [
@@ -35,6 +35,8 @@ import { NzNotificationModule } from 'ng-zorro-antd/notification';
     FormsModule,
     NzDatePickerModule,
     NzNotificationModule,
+    NzTagModule,
+    NzIconModule,
   ],
   exports: [
     CommonModule,
@@ -52,6 +54,8 @@ import { NzNotificationModule } from 'ng-zorro-antd/notification';
     FormsModule,
     NzDatePickerModule,
     NzNotificationModule,
+    NzTagModule,
+    NzIconModule,
   ],
 })
 export class SharedModule {}

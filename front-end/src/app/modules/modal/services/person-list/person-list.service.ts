@@ -26,7 +26,20 @@ export class PersonsListService {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     });
-
     return this.http.get(`${this.url}/personWithActivities/${id}`, { headers });
+  }
+
+  deleteActivityFromPerson(activityId: string): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.delete(
+      `${this.url}/${activityId}/deleteActivity`,
+      {
+        headers,
+      }
+    );
   }
 }

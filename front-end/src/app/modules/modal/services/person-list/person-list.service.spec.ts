@@ -43,6 +43,19 @@ describe('PersonsListService', () => {
     req.flush(mockPersons);
   });
 
+  it('Should delete activity', () => {
+    const mockResponse = { message: "Atividade deletada com sucesso" };
+  
+    service.deleteActivityFromPerson('1').subscribe((response) => {
+      expect(response).toEqual(mockResponse);
+    });
+  
+    const req = httpMock.expectOne(`http://localhost:3000/1/deleteActivity`);
+    expect(req.request.method).toBe('DELETE');
+    req.flush(mockResponse);
+  });
+  
+
   it('Should fetch person with activities', () => {
     const mockPerson = {
       id: '1',
@@ -60,4 +73,5 @@ describe('PersonsListService', () => {
     expect(req.request.method).toBe('GET');
     req.flush(mockPerson);
   });
+
 });
