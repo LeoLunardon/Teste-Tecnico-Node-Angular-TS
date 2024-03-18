@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { RegisterService } from '../services/register/register.service';
 import {
@@ -9,6 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { SharedModule } from '../../../shared/modules/shared.modules';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 @Component({
   selector: 'app-register',
@@ -37,7 +37,11 @@ export class RegisterComponent {
       this.registerService
         .register(email!, password!, username!)
         .subscribe((response) => {
-          console.log('Usuário criado com sucesso', response);
+          this.notification.create(
+            'success',
+            'Sucesso',
+            'Conta criada com sucesso!'
+          );
           this.router.navigate(['login']);
         });
     } else {
@@ -52,8 +56,8 @@ export class RegisterComponent {
 
   constructor(
     private fb: NonNullableFormBuilder,
-    private http: HttpClient,
     private router: Router,
-    private registerService: RegisterService
+    private registerService: RegisterService,
+    private notification: NzNotificationService
   ) {}
 }
